@@ -1,537 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intern Portal - IIT Patna</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>tailwind.config={theme:{extend:{colors:{primary:'#0A2463',secondary:'#E63946'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
-    <style>
-        :where([class^="ri-"])::before { content: "\f3c2"; }
-        body {
-            font-family: 'Inter', sans-serif;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intern Portal – IIT Patna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.0.0/remixicon.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A2463'
+          },
+          borderRadius: {
+            button: '8px'
+          }
         }
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .card-glassmorphism {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(10, 36, 99, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-glassmorphism:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(10, 36, 99, 0.15);
-        }
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .custom-checkbox {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border: 2px solid #0A2463;
-            border-radius: 4px;
-            outline: none;
-            cursor: pointer;
-            position: relative;
-        }
-        .custom-checkbox:checked {
-            background-color: #0A2463;
-        }
-        .custom-checkbox:checked::after {
-            content: "";
-            position: absolute;
-            top: 2px;
-            left: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .card-glassmorphism {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 20px rgba(10, 36, 99, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-glassmorphism:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(10, 36, 99, 0.15);
+    }
+  </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Navbar -->
-    <nav class="glassmorphism fixed top-0 left-0 w-full z-50 shadow-sm">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="font-['Pacifico'] text-primary text-2xl mr-2">IITP</div>
-                <span class="hidden md:inline-block text-lg font-semibold text-gray-800">Intern Portal</span>
-            </div>
-            
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-primary font-medium hover:text-opacity-80 transition-colors">Home</a>
-                <a href="#" class="text-gray-700 font-medium hover:text-primary transition-colors">About</a>
-                <a href="#" class="text-gray-700 font-medium hover:text-primary transition-colors">Contact</a>
-                <a href="#" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">Login</a>
-            </div>
-            
-            <!-- Mobile Navigation Button -->
-            <div class="md:hidden w-10 h-10 flex items-center justify-center text-primary">
-                <i class="ri-menu-line ri-lg"></i>
-            </div>
-        </div>
-    </nav>
+<body class="bg-gray-50">
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 pt-24 pb-16">
-        <!-- Header Section -->
-        <div class="mb-8 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-primary mb-2">IIT Patna Intern Portal</h1>
-            <p class="text-gray-600 max-w-3xl mx-auto">Explore the innovative projects and research work being conducted by interns under the mentorship of Dr. Rahul Mishra at IIT Patna.</p>
-        </div>
+  <!-- ✅ Navbar -->
+  <nav class="bg-white shadow-md fixed w-full z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="font-['Pacifico'] text-primary text-2xl">IITP</div>
+      <div class="text-gray-800 font-semibold text-lg">Intern Portal</div>
+    </div>
+  </nav>
 
-        <!-- Filter Section -->
-        <div class="bg-white rounded-lg shadow-md p-4 mb-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <!-- Search Bar -->
-                <div class="relative w-full md:w-1/3">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
-                        <i class="ri-search-line text-gray-400"></i>
-                    </div>
-                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Search by name or topic...">
-                </div>
-                
-                <!-- Filters -->
-                <div class="flex flex-wrap gap-3 w-full md:w-auto">
-                    <!-- Year Filter -->
-                    <div class="relative w-full sm:w-auto">
-                        <div class="flex items-center">
-                            <div class="relative">
-                                <button id="yearFilterBtn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-4 py-2.5 flex items-center justify-between min-w-[150px] whitespace-nowrap">
-                                    <span>Batch Year</span>
-                                    <i class="ri-arrow-down-s-line ml-2"></i>
-                                </button>
-                                <div id="yearDropdown" class="hidden absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200">
-                                    <ul class="py-1 text-sm text-gray-700">
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="year2025">
-                                            <label for="year2025">2025</label>
-                                        </li>
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="year2024">
-                                            <label for="year2024">2024</label>
-                                        </li>
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="year2023">
-                                            <label for="year2023">2023</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- University Filter -->
-                    <div class="relative w-full sm:w-auto">
-                        <div class="flex items-center">
-                            <div class="relative">
-                                <button id="universityFilterBtn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-4 py-2.5 flex items-center justify-between min-w-[150px] whitespace-nowrap">
-                                    <span>University</span>
-                                    <i class="ri-arrow-down-s-line ml-2"></i>
-                                </button>
-                                <div id="universityDropdown" class="hidden absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200">
-                                    <ul class="py-1 text-sm text-gray-700">
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="uniCUJ">
-                                            <label for="uniCUJ">CUJ</label>
-                                        </li>
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="uniNIT">
-                                            <label for="uniNIT">NIT Patna</label>
-                                        </li>
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="uniBIT">
-                                            <label for="uniBIT">BIT Mesra</label>
-                                        </li>
-                                        <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
-                                            <input type="checkbox" class="custom-checkbox mr-2" id="uniIIIT">
-                                            <label for="uniIIIT">IIIT Ranchi</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Export Buttons -->
-                    <div class="flex gap-2 w-full sm:w-auto">
-                        <button class="bg-gray-50 border border-gray-300 text-gray-700 text-sm !rounded-button px-3 py-2 flex items-center whitespace-nowrap hover:bg-gray-100">
-                            <i class="ri-file-excel-2-line mr-1"></i> Excel
-                        </button>
-                        <button class="bg-gray-50 border border-gray-300 text-gray-700 text-sm !rounded-button px-3 py-2 flex items-center whitespace-nowrap hover:bg-gray-100">
-                            <i class="ri-file-pdf-line mr-1"></i> PDF
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- ✅ Page Title -->
+  <div class="pt-24 text-center mb-6">
+    <h1 class="text-3xl font-bold text-primary">Explore Our Interns</h1>
+    <p class="text-gray-600">Guided by Dr. Rahul Mishra, IIT Patna</p>
+  </div>
 
-        <!-- Interns Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Intern Card 1 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Srishti Pathak</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">Central University of Jharkhand (CUJ)</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">May - July 2025</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Smart System Maintenance</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="max-w-6xl mx-auto px-4 mb-6 flex justify-end gap-3">
+  <button onclick="openModal('add-intern')" class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition">
+    + Add Intern
+  </button>
+  <button onclick="exportToCSV()" class="bg-green-600 text-white px-4 py-2 rounded-button hover:bg-green-700 transition">
+    Export CSV
+  </button>
+</div>
 
-            <!-- Intern Card 2 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Aryan Sharma</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">NIT Patna</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">June - August 2025</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Machine Learning for Predictive Maintenance</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Intern Card 3 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Priya Verma</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">BIT Mesra</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">May - July 2025</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">IoT-based Environmental Monitoring</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- ✅ Intern Cards Grid -->
+  <div id="internGrid" class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
+    <!-- Sample Card -->
+    <div class="card-glassmorphism rounded-lg p-5">
+      <h3 class="text-xl font-bold text-primary mb-2">Srishti Pathak</h3>
+      <p class="text-gray-600 mb-1">CUJ | Batch 2025</p>
+      <p class="text-gray-500 text-sm mb-1">Intern portal</p>
+      <p class="text-gray-500 text-sm mb-1">May – July 2025</p>
+      <p class="text-blue-600"><a href="https://linkedin.com/in/srishtipathak" target="_blank">LinkedIn</a></p>
+      <p class="text-blue-600"><a href="https://github.com/srishtipathak" target="_blank">GitHub</a></p>
+    </div>
+  </div>
 
-            <!-- Intern Card 4 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Rahul Gupta</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">IIIT Ranchi</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">June - August 2025</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Blockchain for Supply Chain Management</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div id="add-intern-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-center items-center">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-2xl relative">
+      <button onclick="closeModal('add-intern')" class="absolute top-2 right-4 text-gray-600 text-2xl">&times;</button>
+      <h2 class="text-2xl font-bold text-primary mb-4">Add New Intern</h2>
+      <form id="addInternForm" class="grid grid-cols-1 gap-4">
+        <input type="text" id="name" placeholder="Full Name" required class="border border-gray-300 rounded px-3 py-2" />
+        <input type="text" id="university" placeholder="University" required class="border border-gray-300 rounded px-3 py-2" />
+        <input type="text" id="batch" placeholder="Batch Year" required class="border border-gray-300 rounded px-3 py-2" />
+        <input type="text" id="duration" placeholder="Internship Duration" required class="border border-gray-300 rounded px-3 py-2" />
+        <input type="text" id="project" placeholder="Project Title" required class="border border-gray-300 rounded px-3 py-2" />
+        <input type="url" id="linkedin" placeholder="LinkedIn Profile URL" class="border border-gray-300 rounded px-3 py-2" />
+        <input type="url" id="github" placeholder="GitHub Profile URL" class="border border-gray-300 rounded px-3 py-2" />
+        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-button">Add Intern</button>
+      </form>
+    </div>
+  </div>
 
-            <!-- Intern Card 5 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Neha Patel</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">CUJ</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">May - July 2024</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Computer Vision for Quality Control</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2023</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+ <script>
+  let editingIndex = null;
 
-            <!-- Intern Card 6 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Vikram Singh</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">NIT Patna</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">June - August 2024</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Natural Language Processing for Customer Support</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2023</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  function openModal(id) {
+    document.getElementById(`${id}-modal`).classList.remove('hidden');
+  }
 
-            <!-- Intern Card 7 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Ananya Mishra</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">BIT Mesra</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">May - July 2024</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Renewable Energy Integration Systems</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2023</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  function closeModal(id) {
+    document.getElementById(`${id}-modal`).classList.add('hidden');
+    editingIndex = null;
+    document.getElementById("addInternForm").reset();
+  }
 
-            <!-- Intern Card 8 -->
-            <div class="card-glassmorphism rounded-lg overflow-hidden">
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-primary mb-3">Rohan Joshi</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-building-line"></i>
-                            </div>
-                            <p class="text-gray-700">IIIT Ranchi</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-calendar-line"></i>
-                            </div>
-                            <p class="text-gray-700">June - August 2024</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-tools-line"></i>
-                            </div>
-                            <p class="text-gray-700">Quantum Computing Applications</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-graduation-cap-line"></i>
-                            </div>
-                            <p class="text-gray-700">Batch 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+  function renderInternCard(intern, index) {
+    const card = document.createElement("div");
+    card.className = "card-glassmorphism rounded-lg p-5";
+    card.innerHTML = `
+      <h3 class="text-xl font-bold text-primary mb-2">${intern.name}</h3>
+      <p class="text-gray-600 mb-1">${intern.university} | Batch ${intern.batch}</p>
+      <p class="text-gray-500 text-sm mb-1">${intern.project}</p>
+      <p class="text-gray-500 text-sm mb-1">${intern.duration}</p>
+      ${intern.linkedin ? `<p class="text-blue-600"><a href="${intern.linkedin}" target="_blank">LinkedIn</a></p>` : ''}
+      ${intern.github ? `<p class="text-blue-600"><a href="${intern.github}" target="_blank">GitHub</a></p>` : ''}
+      <div class="mt-3 flex gap-3">
+        <button onclick="editIntern(${index})" class="text-sm bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
+        <button onclick="deleteIntern(${index})" class="text-sm bg-blue-600 text-white px-3 py-1 rounded">Delete</button>
+      </div>
+    `;
+    document.getElementById("internGrid").appendChild(card);
+  }
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start">
-                        <div class="font-['Pacifico'] text-white text-2xl mr-2">IITP</div>
-                        <span class="text-lg font-semibold">Intern Portal</span>
-                    </div>
-                    <p class="text-sm mt-2 text-center md:text-left">© 2025 Indian Institute of Technology Patna</p>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="#" class="hover:text-gray-300 transition-colors">Home</a></li>
-                            <li><a href="#" class="hover:text-gray-300 transition-colors">About</a></li>
-                            <li><a href="#" class="hover:text-gray-300 transition-colors">Contact</a></li>
-                            <li><a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-semibold mb-3">Contact</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex items-start">
-                                <div class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
-                                    <i class="ri-map-pin-line"></i>
-                                </div>
-                                <span>Bihta, Patna, Bihar 801106</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
-                                    <i class="ri-mail-line"></i>
-                                </div>
-                                <span>internportal@iitp.ac.in</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
-                                    <i class="ri-phone-line"></i>
-                                </div>
-                                <span>+91 1234 567 890</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  function editIntern(index) {
+    const interns = JSON.parse(localStorage.getItem("interns") || "[]");
+    const intern = interns[index];
 
-    <script id="dropdownToggleScript">
-        document.addEventListener('DOMContentLoaded', function() {
-            // Year dropdown toggle
-            const yearFilterBtn = document.getElementById('yearFilterBtn');
-            const yearDropdown = document.getElementById('yearDropdown');
-            
-            yearFilterBtn.addEventListener('click', function() {
-                yearDropdown.classList.toggle('hidden');
-                universityDropdown.classList.add('hidden'); // Close other dropdown
-            });
-            
-            // University dropdown toggle
-            const universityFilterBtn = document.getElementById('universityFilterBtn');
-            const universityDropdown = document.getElementById('universityDropdown');
-            
-            universityFilterBtn.addEventListener('click', function() {
-                universityDropdown.classList.toggle('hidden');
-                yearDropdown.classList.add('hidden'); // Close other dropdown
-            });
-            
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!yearFilterBtn.contains(event.target) && !yearDropdown.contains(event.target)) {
-                    yearDropdown.classList.add('hidden');
-                }
-                
-                if (!universityFilterBtn.contains(event.target) && !universityDropdown.contains(event.target)) {
-                    universityDropdown.classList.add('hidden');
-                }
-            });
-        });
-    </script>
+    document.getElementById("name").value = intern.name;
+    document.getElementById("university").value = intern.university;
+    document.getElementById("batch").value = intern.batch;
+    document.getElementById("duration").value = intern.duration;
+    document.getElementById("project").value = intern.project;
+    document.getElementById("linkedin").value = intern.linkedin;
+    document.getElementById("github").value = intern.github;
+
+    editingIndex = index;
+    openModal("add-intern");
+  }
+
+  function deleteIntern(index) {
+    const interns = JSON.parse(localStorage.getItem("interns") || "[]");
+    if (confirm("Are you sure you want to delete this intern?")) {
+      interns.splice(index, 1);
+      localStorage.setItem("interns", JSON.stringify(interns));
+      renderAllInterns();
+    }
+  }
+
+  function renderAllInterns() {
+    document.getElementById("internGrid").innerHTML = "";
+    const interns = JSON.parse(localStorage.getItem("interns") || "[]");
+    interns.forEach((intern, index) => renderInternCard(intern, index));
+  }
+
+  window.addEventListener("DOMContentLoaded", renderAllInterns);
+
+  document.getElementById("addInternForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const intern = {
+      name: document.getElementById("name").value,
+      university: document.getElementById("university").value,
+      batch: document.getElementById("batch").value,
+      duration: document.getElementById("duration").value,
+      project: document.getElementById("project").value,
+      linkedin: document.getElementById("linkedin").value,
+      github: document.getElementById("github").value
+    };
+
+    let interns = JSON.parse(localStorage.getItem("interns") || "[]");
+
+    if (editingIndex !== null) {
+      interns[editingIndex] = intern;
+    } else {
+      interns.push(intern);
+    }
+
+    localStorage.setItem("interns", JSON.stringify(interns));
+    renderAllInterns();
+    document.getElementById("addInternForm").reset();
+    closeModal("add-intern");
+  });
+
+  function exportToCSV() {
+    const interns = JSON.parse(localStorage.getItem("interns") || "[]");
+    if (interns.length === 0) {
+      alert("No interns to export!");
+      return;
+    }
+
+    const header = Object.keys(interns[0]);
+    const rows = interns.map(intern => header.map(key => `"${(intern[key] || "").replace(/"/g, '""')}"`).join(','));
+
+    const csvContent = [header.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "interns.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+
 </body>
 </html>
