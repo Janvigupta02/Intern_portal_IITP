@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Intern Management Portal</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.0.0/remixicon.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -22,9 +19,39 @@
           extend: {
             colors: {
               primary: "#0A2463",
+              secondary: "#3E92CC",
+              accent: "#FF6B6B",
+              dark: "#1A1A2E",
+              light: "#EEEEFF",
             },
-            borderRadius: {
-              button: "8px",
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'slide-in': 'slideIn 0.5s ease-out',
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'bounce-soft': 'bounceSoft 2s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 20px rgba(62, 146, 204, 0.3)' },
+                '100%': { boxShadow: '0 0 40px rgba(62, 146, 204, 0.6)' },
+              },
+              slideIn: {
+                '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              bounceSoft: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
             },
           },
         },
@@ -33,170 +60,391 @@
 
     <style>
       body {
-        background-image: url("https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1920&q=80");
-        background-size: cover;
-        background-repeat: no-repeat;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         background-attachment: fixed;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: black;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
       }
 
-      .card-glassmorphism {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(8px);
-box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
-border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      .hero-bg {
+        background: linear-gradient(135deg, rgba(10, 36, 99, 0.9), rgba(62, 146, 204, 0.8)),
+                    url("https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
       }
-      .card-glassmorphism:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(10, 36, 99, 0.15);
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .glass-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 35px 60px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #3E92CC, #0A2463);
+        box-shadow: 0 10px 25px rgba(10, 36, 99, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(10, 36, 99, 0.4);
+      }
+
+      .btn-secondary {
+        background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+      }
+
+      .floating-elements {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .modal-glass {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .profile-img {
+        transition: all 0.3s ease;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .profile-img:hover {
+        transform: scale(1.1);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      .tag {
+        background: linear-gradient(135deg, rgba(62, 146, 204, 0.8), rgba(10, 36, 99, 0.8));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .social-link {
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        transform: scale(1.1);
+        text-shadow: 0 0 10px rgba(62, 146, 204, 0.5);
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+
+      .pulse-animation {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #3E92CC, #0A2463);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
       }
     </style>
   </head>
 
-  <body class="bg-gray-50">
-    <nav class="bg-white shadow-md fixed w-full z-50">
-      <div
-        class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center"
-      >
-      <div class="rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl p-6 max-w-sm">
+  <body class="min-h-screen">
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+      <div class="floating-circle w-32 h-32 top-10 left-10 animate-float"></div>
+      <div class="floating-circle w-24 h-24 top-1/3 right-20 animate-float" style="animation-delay: -2s;"></div>
+      <div class="floating-circle w-16 h-16 bottom-20 left-1/4 animate-float" style="animation-delay: -4s;"></div>
+      <div class="floating-circle w-20 h-20 bottom-1/3 right-1/3 animate-float" style="animation-delay: -6s;"></div>
+    </div>
 
-        <div class="font-['Pacifico'] text-primary text-2xl">IITP</div>
-        <div class="text-gray-800 font-semibold text-lg">
-          Intern Management Portal
+    <!-- Navigation -->
+    <nav class="nav-glass fixed w-full z-50 animate-slide-in">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <div class="glass-card rounded-2xl p-4 hover:scale-105 transition-transform">
+            <div class="font-['Pacifico'] text-white text-2xl animate-glow">IITP</div>
+          </div>
+          <div class="text-white">
+            <div class="font-bold text-xl">Intern Management Portal</div>
+            <div class="text-sm opacity-80">Innovation & Excellence</div>
+          </div>
         </div>
-      </div>
+        <div class="hidden md:flex items-center space-x-2">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span class="text-white text-sm">Live System</span>
+        </div>
       </div>
     </nav>
 
-    <div class="pt-24 text-center mb-6">
-      <h1 class="text-3xl font-bold text-primary">Explore Our Interns</h1>
-      <p class="text-gray-600">Guided by Dr. Rahul Mishra, IIT Patna</p>
-    </div>
-
-    <div class="max-w-6xl mx-auto px-4 mb-6 flex justify-end gap-3">
-      <button
-        onclick="openModal('add-intern')"
-        class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition"
-      >
-        + Add Intern
-      </button>
-      <button
-        onclick="exportToCSV()"
-        class="bg-green-600 text-white px-4 py-2 rounded-button hover:bg-green-700 transition"
-      >
-        Export CSV
-      </button>
-    </div>
-
-    <div
-      id="internGrid"
-      class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-20"
-    >
-      <!-- Sample Card -->
-      <div class="card-glassmorphism rounded-lg p-5">
-        <h3 class="text-xl font-bold text-primary mb-2">Srishti Pathak</h3>
-        <p class="text-gray-600 mb-1">CUJ | Batch 2025</p>
-        <p class="text-gray-500 text-sm mb-1">Intern portal</p>
-        <p class="text-gray-500 text-sm mb-1">May – July 2025</p>
-        <p class="text-blue-600">
-          <a href="https://linkedin.com/in/srishtipathak" target="_blank"
-            >LinkedIn</a
+    <!-- Hero Section -->
+    <div class="hero-bg min-h-screen flex items-center justify-center relative">
+      <div class="text-center text-white px-6 animate-fade-in">
+        <h1 class="hero-title mb-6 animate-bounce-soft">
+          Explore Our <span class="text-yellow-300">Brilliant</span> Interns
+        </h1>
+        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">
+          Guided by <span class="font-semibold text-yellow-300">Dr. Rahul Mishra</span>, IIT Patna
+          <br>Shaping the future of technology, one intern at a time
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            onclick="openModal('add-intern')"
+            class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform flex items-center space-x-2"
           >
-        </p>
-        <p class="text-blue-600">
-          <a href="https://github.com/srishtipathak" target="_blank">GitHub</a>
-        </p>
+            <i class="ri-add-line"></i>
+            <span>Add New Intern</span>
+          </button>
+          <button
+            onclick="exportToCSV()"
+            class="btn-secondary text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform flex items-center space-x-2"
+          >
+            <i class="ri-download-line"></i>
+            <span>Export Data</span>
+          </button>
+        </div>
       </div>
     </div>
 
+    <!-- Statistics Section -->
+    <div class="py-20 relative">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="glass-card rounded-2xl p-8 text-center text-white">
+            <div class="text-4xl font-bold mb-2" id="totalInterns">0</div>
+            <div class="text-lg opacity-80">Total Interns</div>
+          </div>
+          <div class="glass-card rounded-2xl p-8 text-center text-white">
+            <div class="text-4xl font-bold mb-2">2025</div>
+            <div class="text-lg opacity-80">Active Year</div>
+          </div>
+          <div class="glass-card rounded-2xl p-8 text-center text-white">
+            <div class="text-4xl font-bold mb-2">100%</div>
+            <div class="text-lg opacity-80">Success Rate</div>
+          </div>
+        </div>
+
+        <!-- Intern Grid -->
+        <div
+          id="internGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Sample Card -->
+          <div class="glass-card rounded-2xl p-6 text-white animate-fade-in">
+            <div class="text-center">
+              <img 
+                src="https://api.dicebear.com/6.x/initials/svg?seed=Srishti Pathak" 
+                alt="Srishti Pathak" 
+                class="profile-img w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+              >
+              <h3 class="text-xl font-bold mb-2">Srishti Pathak</h3>
+              <p class="opacity-80 mb-4">CUJ | Batch 2025</p>
+              
+              <div class="flex justify-center gap-2 mb-4">
+                <span class="tag text-xs px-3 py-1 rounded-full">Intern Portal</span>
+                <span class="tag text-xs px-3 py-1 rounded-full">May – July 2025</span>
+              </div>
+
+              <div class="flex justify-center gap-4 mb-4">
+                <a href="https://linkedin.com/in/srishtipathak" target="_blank" class="social-link text-blue-300 hover:text-blue-100">
+                  <i class="ri-linkedin-fill text-xl"></i>
+                </a>
+                <a href="https://github.com/srishtipathak" target="_blank" class="social-link text-purple-300 hover:text-purple-100">
+                  <i class="ri-github-fill text-xl"></i>
+                </a>
+              </div>
+
+              <div class="flex justify-center gap-2">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm transition-colors">
+                  <i class="ri-edit-line"></i> Edit
+                </button>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm transition-colors">
+                  <i class="ri-delete-bin-line"></i> Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Intern Modal -->
     <div
       id="add-intern-modal"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-center items-center"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-center items-center p-4"
     >
-      <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-2xl relative">
-        <button
-          onclick="closeModal('add-intern')"
-          class="absolute top-2 right-4 text-gray-600 text-2xl"
-        >
-          &times;
-        </button>
-        <h2 class="text-2xl font-bold text-primary mb-4">Add New Intern</h2>
-        <form id="addInternForm" class="grid grid-cols-1 gap-4">
-          <input
-            type="text"
-            id="name"
-            placeholder="Full Name"
-            required
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="text"
-            id="university"
-            ;
-            placeholder="University"
-            required
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="text"
-            id="batch"
-            placeholder="Batch Year"
-            required
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="text"
-            id="duration"
-            placeholder="Internship Duration"
-            required
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="text"
-            id="project"
-            placeholder="Project Title"
-            required
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="url"
-            id="linkedin"
-            placeholder="LinkedIn Profile URL"
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="url"
-            id="github"
-            placeholder="GitHub Profile URL"
-            class="border border-gray-300 rounded px-3 py-2"
-          />
-          <input type="file" accept="image/*" onchange="previewImage(event)" />
-          <img
-            id="preview"
-            src="https://i.imgur.com/6VBx3io.png"
-            class="w-24 h-24 mt-2 rounded-full object-cover"
-          />
+      <div class="modal-glass rounded-2xl shadow-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-bold gradient-text">Add New Intern</h2>
+          <button
+            onclick="closeModal('add-intern')"
+            class="text-gray-500 hover:text-gray-700 text-3xl transition-colors"
+          >
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+        
+        <form id="addInternForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter full name"
+                required
+                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+              />
+            </div>
+            
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700">University</label>
+              <input
+                type="text"
+                id="university"
+                placeholder="University name"
+                required
+                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+              />
+            </div>
+            
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700">Batch Year</label>
+              <input
+                type="text"
+                id="batch"
+                placeholder="e.g., 2025"
+                required
+                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+              />
+            </div>
+            
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700">Duration</label>
+              <input
+                type="text"
+                id="duration"
+                placeholder="e.g., May - July 2025"
+                required
+                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700">Project Title</label>
+            <input
+              type="text"
+              id="project"
+              placeholder="Project or research focus"
+              required
+              class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700">LinkedIn Profile</label>
+              <input
+                type="url"
+                id="linkedin"
+                placeholder="https://linkedin.com/in/username"
+                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+              />
+            </div>
+            
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700">GitHub Profile</label>
+              <input
+                type="url"
+                id="github"
+                placeholder="https://github.com/username"
+                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <label class="block text-sm font-semibold text-gray-700">Profile Picture</label>
+            <div class="flex items-center space-x-4">
+              <img
+                id="preview"
+                src="https://api.dicebear.com/6.x/initials/svg?seed=New User"
+                class="w-20 h-20 rounded-full border-4 border-gray-200 object-cover"
+              />
+              <input 
+                type="file" 
+                accept="image/*" 
+                onchange="previewImage(event)"
+                class="flex-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              />
+            </div>
+          </div>
 
           <button
             type="submit"
-            class="bg-primary text-white px-4 py-2 rounded-button"
+            class="w-full btn-primary text-white py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-transform flex items-center justify-center space-x-2"
           >
-            Add Intern
+            <i class="ri-save-line"></i>
+            <span>Save Intern</span>
           </button>
         </form>
       </div>
     </div>
 
-    <footer
-      class="mt-auto text-center py-6 glass mx-auto my-10 max-w-4xl w-full"
-    >
-      &copy; 2025 Intern Portal. All rights reserved.
+    <!-- Footer -->
+    <footer class="glass-card mx-6 mb-6 rounded-2xl p-6 text-center text-white">
+      <p class="text-lg font-semibold mb-2">Intern Management Portal</p>
+      <p class="opacity-80">&copy; 2025 IIT Patna. All rights reserved.</p>
     </footer>
 
     <script>
       let editingIndex = null;
+      let interns = [];
+
       function previewImage(event) {
         const preview = document.getElementById("preview");
         const file = event.target.files[0];
@@ -212,51 +460,32 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 
       function openModal(id) {
         document.getElementById(`${id}-modal`).classList.remove("hidden");
+        document.body.style.overflow = 'hidden';
       }
 
       function closeModal(id) {
         document.getElementById(`${id}-modal`).classList.add("hidden");
+        document.body.style.overflow = 'auto';
         editingIndex = null;
         document.getElementById("addInternForm").reset();
+        document.getElementById("preview").src = "https://api.dicebear.com/6.x/initials/svg?seed=New User";
       }
 
       function renderInternCard(intern, index) {
         const card = document.createElement("div");
-        card.className = "card-glassmorphism rounded-lg p-5";
+        card.className = "glass-card rounded-2xl p-6 text-white animate-fade-in";
 
         card.innerHTML = `
-<img 
-  src="${intern.image || "https://i.imgur.com/6VBx3io.png"}" 
-  alt="${intern.name}" 
-  class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-primary"
-/>
-    <h3 class="text-xl font-bold text-primary mb-2">${intern.name}</h3>
-    <p class="text-gray-600 mb-1">${intern.university} | Batch ${
-          intern.batch
-        }</p>
-    <p class="text-gray-500 text-sm mb-1">${intern.project}</p>
-    <p class="text-gray-500 text-sm mb-1">${intern.duration}</p>
-    ${
-      intern.linkedin
-        ? `<p class="text-blue-600"><a href="${intern.linkedin}" target="_blank">LinkedIn</a></p>`
-        : ""
-    }
-    ${
-      intern.github
-        ? `<p class="text-blue-600"><a href="${intern.github}" target="_blank">GitHub</a></p>`
-        : ""
-    }
-    <div class="mt-3 flex gap-3">
-      <button onclick="editIntern(${index})" class="text-sm bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
-      <button onclick="deleteIntern(${index})" class="text-sm bg-blue-600 text-white px-3 py-1 rounded">Delete</button>
-    </div>
-  `;
-
-        document.getElementById("internGrid").appendChild(card);
-      }
+          <div class="text-center">
+            <img 
+              src="${intern.image || `https://api.dicebear.com/6.x/initials/svg?seed=${intern.name}`}" 
+              alt="${intern.name}" 
+              class="profile-img w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            >
+            <h3 class="text-xl font-bold mb-2">${intern.name}</h3>
+            <p class="opa
 
       function editIntern(index) {
-        const interns = JSON.parse(localStorage.getItem("interns") || "[]");
         const intern = interns[index];
 
         document.getElementById("name").value = intern.name;
@@ -264,63 +493,62 @@ border: 1px solid rgba(255, 255, 255, 0.2);
         document.getElementById("batch").value = intern.batch;
         document.getElementById("duration").value = intern.duration;
         document.getElementById("project").value = intern.project;
-        document.getElementById("linkedin").value = intern.linkedin;
-        document.getElementById("github").value = intern.github;
-        document.getElementById("preview").value = intern.image || "";
+        document.getElementById("linkedin").value = intern.linkedin || '';
+        document.getElementById("github").value = intern.github || '';
+        document.getElementById("preview").src = intern.image || `https://api.dicebear.com/6.x/initials/svg?seed=${intern.name}`;
 
         editingIndex = index;
         openModal("add-intern");
       }
 
       function deleteIntern(index) {
-        const interns = JSON.parse(localStorage.getItem("interns") || "[]");
         if (confirm("Are you sure you want to delete this intern?")) {
           interns.splice(index, 1);
-          localStorage.setItem("interns", JSON.stringify(interns));
           renderAllInterns();
+          updateStats();
         }
       }
 
       function renderAllInterns() {
-        document.getElementById("internGrid").innerHTML = "";
-        const interns = JSON.parse(localStorage.getItem("interns") || "[]");
-        interns.forEach((intern, index) => renderInternCard(intern, index));
+        const grid = document.getElementById("internGrid");
+        grid.innerHTML = "";
+        
+        interns.forEach((intern, index) => {
+          const card = renderInternCard(intern, index);
+          grid.appendChild(card);
+        });
       }
 
-      window.addEventListener("DOMContentLoaded", renderAllInterns);
+      function updateStats() {
+        document.getElementById("totalInterns").textContent = interns.length;
+      }
 
-      document
-        .getElementById("addInternForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+      document.getElementById("addInternForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-          const intern = {
-            name: document.getElementById("name").value,
-            university: document.getElementById("university").value,
-            batch: document.getElementById("batch").value,
-            duration: document.getElementById("duration").value,
-            project: document.getElementById("project").value,
-            linkedin: document.getElementById("linkedin").value,
-            github: document.getElementById("github").value,
-            image: document.getElementById("preview").src,
-          };
+        const intern = {
+          name: document.getElementById("name").value,
+          university: document.getElementById("university").value,
+          batch: document.getElementById("batch").value,
+          duration: document.getElementById("duration").value,
+          project: document.getElementById("project").value,
+          linkedin: document.getElementById("linkedin").value,
+          github: document.getElementById("github").value,
+          image: document.getElementById("preview").src,
+        };
 
-          let interns = JSON.parse(localStorage.getItem("interns") || "[]");
+        if (editingIndex !== null) {
+          interns[editingIndex] = intern;
+        } else {
+          interns.push(intern);
+        }
 
-          if (editingIndex !== null) {
-            interns[editingIndex] = intern;
-          } else {
-            interns.push(intern);
-          }
-
-          localStorage.setItem("interns", JSON.stringify(interns));
-          renderAllInterns();
-          document.getElementById("addInternForm").reset();
-          closeModal("add-intern");
-        });
+        renderAllInterns();
+        updateStats();
+        closeModal("add-intern");
+      });
 
       function exportToCSV() {
-        const interns = JSON.parse(localStorage.getItem("interns") || "[]");
         if (interns.length === 0) {
           alert("No interns to export!");
           return;
@@ -345,6 +573,12 @@ border: 1px solid rgba(255, 255, 255, 0.2);
         a.click();
         URL.revokeObjectURL(url);
       }
+
+      // Initialize
+      window.addEventListener("DOMContentLoaded", function() {
+        renderAllInterns();
+        updateStats();
+      });
     </script>
   </body>
 </html>
