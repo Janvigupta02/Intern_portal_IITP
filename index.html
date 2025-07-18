@@ -483,7 +483,35 @@
               class="profile-img w-24 h-24 rounded-full mx-auto mb-4 object-cover"
             >
             <h3 class="text-xl font-bold mb-2">${intern.name}</h3>
-            <p class="opa
+            <p class="opacity-80 mb-4">${intern.university} | ${intern.batch}</p>
+            
+            <div class="flex justify-center gap-2 mb-4 flex-wrap">
+              <span class="tag text-xs px-3 py-1 rounded-full">${intern.project}</span>
+              <span class="tag text-xs px-3 py-1 rounded-full">${intern.duration}</span>
+            </div>
+
+            <div class="flex justify-center gap-4 mb-4">
+              ${intern.linkedin ? `<a href="${intern.linkedin}" target="_blank" class="social-link text-blue-300 hover:text-blue-100">
+                <i class="ri-linkedin-fill text-xl"></i>
+              </a>` : ''}
+              ${intern.github ? `<a href="${intern.github}" target="_blank" class="social-link text-purple-300 hover:text-purple-100">
+                <i class="ri-github-fill text-xl"></i>
+              </a>` : ''}
+            </div>
+
+            <div class="flex justify-center gap-2">
+              <button onclick="editIntern(${index})" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm transition-colors">
+                <i class="ri-edit-line"></i> Edit
+              </button>
+              <button onclick="deleteIntern(${index})" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm transition-colors">
+                <i class="ri-delete-bin-line"></i> Delete
+              </button>
+            </div>
+          </div>
+        `;
+
+        return card;
+      }
 
       function editIntern(index) {
         const intern = interns[index];
