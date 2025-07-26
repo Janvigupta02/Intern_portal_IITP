@@ -1,6 +1,28 @@
 let editingIndex = null;
 let interns = [];
 
+// Load data from localStorage on page load
+function loadFromStorage() {
+  const storedInterns = localStorage.getItem('internData');
+  if (storedInterns) {
+    try {
+      interns = JSON.parse(storedInterns);
+    } catch (error) {
+      console.error('Error loading data from localStorage:', error);
+      interns = [];
+    }
+  }
+}
+
+// Save data to localStorage
+function saveToStorage() {
+  try {
+    localStorage.setItem('internData', JSON.stringify(interns));
+  } catch (error) {
+    console.error('Error saving data to localStorage:', error);
+  }
+}
+
 function previewImage(event) {
   const preview = document.getElementById("preview");
   const file = event.target.files[0];
@@ -88,6 +110,7 @@ function editIntern(index) {
 function deleteIntern(index) {
   if (confirm("Are you sure you want to delete this intern?")) {
     interns.splice(index, 1);
+    saveToStorage(); // Save to localStorage
     renderAllInterns();
     updateStats();
   }
@@ -127,6 +150,7 @@ document.getElementById("addInternForm").addEventListener("submit", function (e)
     interns.push(intern);
   }
 
+  saveToStorage(); // Save to localStorage
   renderAllInterns();
   updateStats();
   closeModal("add-intern");
@@ -160,6 +184,7 @@ function exportToCSV() {
 
 // Initialize
 window.addEventListener("DOMContentLoaded", function() {
+  loadFromStorage(); // Load data from localStorage first
   renderAllInterns();
   updateStats();
 });
