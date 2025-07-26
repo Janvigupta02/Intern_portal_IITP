@@ -61,7 +61,8 @@ function renderInternCard(intern, index) {
         class="profile-img w-24 h-24 rounded-full mx-auto mb-4 object-cover"
       >
       <h3 class="text-xl font-bold mb-2">${intern.name}</h3>
-      <p class="opacity-80 mb-4">${intern.university} | ${intern.batch}</p>
+      <p class="opacity-80 mb-2">${intern.university} | ${intern.batch}</p>
+      <p class="text-sm opacity-70 mb-4">${intern.email}</p>
       
       <div class="flex justify-center gap-2 mb-4 flex-wrap">
         <span class="tag text-xs px-3 py-1 rounded-full">${intern.project}</span>
@@ -74,6 +75,9 @@ function renderInternCard(intern, index) {
         </a>` : ''}
         ${intern.github ? `<a href="${intern.github}" target="_blank" class="social-link text-purple-300 hover:text-purple-100">
           <i class="ri-github-fill text-xl"></i>
+        </a>` : ''}
+        ${intern.email ? `<a href="mailto:${intern.email}" class="social-link text-green-300 hover:text-green-100">
+          <i class="ri-mail-fill text-xl"></i>
         </a>` : ''}
       </div>
 
@@ -99,6 +103,7 @@ function editIntern(index) {
   document.getElementById("batch").value = intern.batch;
   document.getElementById("duration").value = intern.duration;
   document.getElementById("project").value = intern.project;
+  document.getElementById("email").value = intern.email || '';
   document.getElementById("linkedin").value = intern.linkedin || '';
   document.getElementById("github").value = intern.github || '';
   document.getElementById("preview").src = intern.image || `https://api.dicebear.com/6.x/initials/svg?seed=${intern.name}`;
@@ -139,6 +144,7 @@ document.getElementById("addInternForm").addEventListener("submit", function (e)
     batch: document.getElementById("batch").value,
     duration: document.getElementById("duration").value,
     project: document.getElementById("project").value,
+    email: document.getElementById("email").value,
     linkedin: document.getElementById("linkedin").value,
     github: document.getElementById("github").value,
     image: document.getElementById("preview").src,
@@ -162,14 +168,17 @@ function exportToCSV() {
     return;
   }
 
-  const header = Object.keys(interns[0]);
+  // Define headers excluding the image field
+  const headers = ['name', 'university', 'batch', 'duration', 'project', 'email', 'linkedin', 'github'];
+  
+  // Create CSV rows with only the specified fields
   const rows = interns.map((intern) =>
-    header
+    headers
       .map((key) => `"${(intern[key] || "").replace(/"/g, '""')}"`)
       .join(",")
   );
 
-  const csvContent = [header.join(","), ...rows].join("\n");
+  const csvContent = [headers.join(","), ...rows].join("\n");
   const blob = new Blob([csvContent], {
     type: "text/csv;charset=utf-8;",
   });
